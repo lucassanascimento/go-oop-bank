@@ -6,10 +6,18 @@ import (
 	"github.com/go-bank/contas"
 )
 
+func PagarBoleto(conta varificarConta, valorBoleto float64) {
+	conta.Sacar(valorBoleto)
+}
+
+type varificarConta interface {
+	Sacar(valor float64) string
+}
+
 func main() {
-	// clientLucas := clientes.Titular{Nome: "Lucas", CPF: "03849593", Profissao: "dev"}
 	lucas := contas.ContaCorrente{}
 
-	fmt.Println(lucas.Depositar(10))
+	lucas.Depositar(10)
+	PagarBoleto(&lucas, 6)
 	fmt.Println(lucas.Saldo())
 }
